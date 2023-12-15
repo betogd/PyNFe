@@ -215,6 +215,26 @@ class NotaFiscal(Entidade):
     #  - Total da nota
     totais_icms_total_nota = Decimal()
 
+    ## - Grupo de ICMS monofasico para combustiveis
+    # - CST 02, 15
+    icms_ad_rem_icms = Decimal()
+    icms_v_icms_mono = Decimal()
+    icms_q_bc_mono = Decimal()
+    # - CST 15
+    icms_ad_rem_icms_reten = Decimal()
+    icms_v_icms_mono_reten = Decimal()
+    icms_q_bc_mono_reten = Decimal()
+    icms_p_red_ad_rem = Decimal()
+    icms_mot_red_ad_rem: int
+    # - CST 53
+    icms_v_icms_mono_op = Decimal()
+    icms_v_icms_mono_dif = Decimal()
+    icms_p_dif = Decimal()
+	# - CST 61
+    icms_ad_rem_icms_ret = Decimal()
+    icms_v_icms_mono_ret = Decimal()
+    icms_q_bc_mono_ret = Decimal()
+
     # - ISSQN
     #  - Base de calculo do ISS
     totais_issqn_base_calculo_iss = Decimal()
@@ -273,6 +293,13 @@ class NotaFiscal(Entidade):
 
     # - Valor total do ICMS Interestadual para a UF do remetente
     totais_icms_inter_remetente = Decimal()
+
+    totais_icms_q_bc_mono = Decimal()
+    totais_icms_v_icms_mono = Decimal()
+    totais_icms_q_bc_mono_reten = Decimal()
+    totais_icms_v_icms_mono_reten = Decimal()
+    totais_icms_q_bc_mono_ret = Decimal()
+    totais_icms_v_icms_mono_ret = Decimal()
 
     # Transporte
     # - Modalidade do Frete (obrigatorio - seleciona de lista) - MODALIDADES_FRETE
@@ -408,6 +435,13 @@ class NotaFiscal(Entidade):
         self.totais_icms_pis += obj.pis_valor
         self.totais_icms_cofins += obj.cofins_valor
         self.totais_icms_outras_despesas_acessorias += obj.outras_despesas_acessorias
+        # - ICMS monofasico para combustiveis
+        self.totais_icms_q_bc_mono += obj.icms_q_bc_mono
+        self.totais_icms_v_icms_mono += obj.icms_v_icms_mono
+        self.totais_icms_q_bc_mono_reten += obj.icms_q_bc_mono_reten
+        self.totais_icms_v_icms_mono_reten += obj.icms_v_icms_mono_reten
+        self.totais_icms_q_bc_mono_ret += obj.icms_q_bc_mono_ret
+        self.totais_icms_v_icms_mono_ret += obj.icms_v_icms_mono_ret
         # - Valor Total do FCP (Fundo de Combate à Pobreza)
         self.totais_fcp += obj.fcp_valor
         self.totais_fcp_destino += obj.fcp_destino_valor
